@@ -6,9 +6,26 @@ class StockPicking(models.Model):
 
     def button_validate(self):
         for picking in self:
+
+            if picking.picking_type_id.code != "outgoing":
+                continue
+
             for move in picking.move_ids:
-                if move.product_uom_qty > move.product_id.qty_available:
+                available_quantity = move.product_id.with_context(
+                    location = move.location_id.id
+                ).qty_available
+
+                if move.product_uom_qty > available_quantity:
                     raise ValidationError(
-                        "The available quantity is less than the demand quantity"
+                        _(
+                            "Not enough stock for product '%s'. "
+                            "Available quantity: %s"
+                        )
+                        %
+                        (
+                            move.product_id.name,
+                            available_quantity
+                        )
                     )
         return super().button_validate()
+
