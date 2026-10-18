@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Prevent Negative Stock",
+    'name': "Prevent Negative Stock    ",
     "license": "LGPL-3",
 
     'summary': "Short (1 phrase/line) summary of the module's purpose",
