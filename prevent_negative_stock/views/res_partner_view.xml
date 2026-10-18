@@ -1,0 +1,16 @@
+<odoo>
+    <data>
+        <record id="view_res_partner_sales_form_inherit" model="ir.ui.view">
+            <field name="name">res_partner.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='vat']" position="after">
+                    <button name="action_open_repairs" type="object" class="btn-primary">
+                        <field name="repair_count" string=" Repairs" widget="statinfo"/>
+                    </button>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
